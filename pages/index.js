@@ -1,8 +1,76 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import React, { useEffect, useState } from "react"
 
 export default function Home() {
+    const [problems, setProblems] = useState([])
+
+  const fetchproblems = () => {
+    fetch("https://codeforces.com/api/user.status?handle=tourist&from=1&count=4000")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setProblems(data.result)
+      })
+  }
+
+  useEffect(() => {
+    fetchproblems()
+  }, [])
+
+  problems.filter((problem)=>{
+    return problem.verdict !== "OK";
+  })
+
+
+
+  const [users, setUsers] = useState([])
+
+  const fetchusers = () => {
+    fetch("https://codeforces.com/api/user.status?handle=anirudtate&from=1&count=4000")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setUsers(data.result)
+      })
+  }
+
+  useEffect(() => {
+    fetchusers()
+  }, [])
+
+  problems.forEach((problem)=>{
+    users.forEach((user)=>{
+      if(problem.solved === "solved" || problem.problem.contestId === user.problem.contestId && problem.problem.index === user.problem.index){
+        problem.solved="solved";
+      }
+      else{
+        problem.solved="unsolved";
+      }
+    })
+  })
+
+  let prob = new Set();
+  for(let i=0;i<problems.length;i++){
+    if(problems[i].verdict === "OK"){
+      let obj = {};
+      obj.name = problems[i].problem.name;
+      obj.contest = problems[i].problem.contestId;
+      obj.sub = problems[i].id;
+      obj.solved = problems[i].solved;
+      obj.letter = problems[i].problem.index;
+      obj.rating = problems[i].problem.rating;
+      prob.add(obj);
+    }
+  }
+
+  const probs = Array.from(prob).sort((a,b) => {
+    return a.rating - b.rating;
+  })
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,57 +81,27 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Yet Another <a target="_blank" href="https://codeforces.com">Codeforces</a> Ladder
         </h1>
-
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          created by {' '}
+          <a target="_blank" href="https://codeforces.com/profile/anirudtate">anirudtate</a>
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {probs.map(problem => (
+            <>
+            <a className={styles.card} target="_blank" href={"https://codeforces.com/contest/" + problem.contest + "/problem/" + problem.letter}>
+              {problem.name}
+            </a>
+            <div className={styles.card2}>
+              {problem.solved}
+            </div>
+            <a className={styles.card3} target="_blank" href={"https://codeforces.com/contest/" + problem.contest + "/submission/" + problem.sub}>code</a>
+            </>
+          ))}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }

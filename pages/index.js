@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
+//import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useEffect, useState } from "react"
 
-export default function Home() {
-    const [problems, setProblems] = useState([])
+const Home = () => {
+  const [problems, setProblems] = useState([])
 
   const fetchproblems = () => {
     fetch("https://codeforces.com/api/user.status?handle=tourist&from=1&count=4000")
@@ -81,23 +81,23 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Yet Another <a target="_blank" href="https://codeforces.com">Codeforces</a> Ladder
+          Yet Another <a target="_blank" rel="noopener noreferrer" href="https://codeforces.com">Codeforces</a> Ladder
         </h1>
         <p className={styles.description}>
           created by {' '}
-          <a target="_blank" href="https://codeforces.com/profile/anirudtate">anirudtate</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://codeforces.com/profile/anirudtate">anirudtate</a>
         </p>
 
         <div className={styles.grid}>
           {probs.map(problem => (
             <>
-            <a className={styles.card} target="_blank" href={"https://codeforces.com/contest/" + problem.contest + "/problem/" + problem.letter}>
+            <a className={styles.card} target="_blank" rel="noopener noreferrer" href={"https://codeforces.com/contest/" + problem.contest + "/problem/" + problem.letter}>
               {problem.name}
             </a>
             <div className={styles.card2}>
               {problem.solved}
             </div>
-            <a className={styles.card3} target="_blank" href={"https://codeforces.com/contest/" + problem.contest + "/submission/" + problem.sub}>code</a>
+            <a className={styles.card3} target="_blank" rel="noopener noreferrer" href={"https://codeforces.com/contest/" + problem.contest + "/submission/" + problem.sub}>code</a>
             </>
           ))}
         </div>
@@ -105,3 +105,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;

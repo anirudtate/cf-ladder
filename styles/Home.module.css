@@ -91,25 +91,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   margin: 5px;
   padding: 1.5rem;
   color: inherit;
   text-decoration: none;
-  border: 1px solid #3B4252;
+  border: 2px solid #3B4252;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   /* max-width: 300px; */
   width: 50%;
 }
-.card2 {
+.card2red {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   margin: 5px;
   padding: 1.5rem;
-  color: inherit;
+  color: #BF616A;
   text-decoration: none;
-  border: 1px solid #3B4252;
+  border: 2px solid #BF616A;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  /* max-width: 300px; */
+  width: 15%;
+}
+.card2green {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5px;
+  padding: 1.5rem;
+  color: #A3BE8C;
+  text-decoration: none;
+  border: 2px solid #A3BE8C;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   /* max-width: 300px; */
@@ -119,6 +136,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   margin: 5px;
   padding: 1.5rem;
   color: inherit;

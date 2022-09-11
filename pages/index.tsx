@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Button, CircularProgress, Pagination, Table, TableBody, TableCell, TableFooter, TableRow, TextField, Typography } from '@mui/material';
 import Link from '../src/Link';
 import { useState } from 'react';
-import { lightGreen, red } from '@mui/material/colors';
+import { green, red } from '@mui/material/colors';
 
 const Home: NextPage = () => {
   const [user, setUser] = useState("");
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         </Typography>
         <TextField label="your codeforces id" placeholder='eg. anirudtate' value={user} onChange={(e) => { setUser(e.target.value) }}></TextField>
         <TextField label="LGM's codeforces id" placeholder='eg. tourist' value={expert} onChange={(e) => { setExpert(e.target.value) }}></TextField>
-        <Button disabled={loading} variant="outlined" size="large" onClick={async () => {
+        <Button disabled={loading} variant="contained" size="large" onClick={async () => {
           setLoading(true);
           const userRes = await fetch("https://codeforces.com/api/user.status?handle=" + user);
           const expertRes = await fetch("https://codeforces.com/api/user.status?handle=" + expert);
@@ -74,13 +74,13 @@ const Home: NextPage = () => {
           <CircularProgress sx={{ my: 5 }} />
           :
           <>
-            {(probs.length == 0)?<></>:<Pagination count={Math.ceil(probs.length / 100)} variant="outlined" shape="rounded" color='primary' size='small' onChange={(e, v) => { setPage(v) }} />}
+            {(probs.length == 0)?<></>:<Pagination count={Math.ceil(probs.length / 100)} variant="text" shape="rounded" color='primary' size='small' onChange={(e, v) => { setPage(v) }} />}
             <Table size="small">
               <TableBody>
                 {probs.slice((page-1)*100, (page*100)).map((p: any) =>
                   <TableRow key={p.id}>
                     <TableCell align='left'><Link underline='hover' target="_blank" href={"https://codeforces.com/contest/" + p.cid + "/problem/" + p.letter}>{p.name}</Link></TableCell>
-                    <TableCell align='center' sx={{ color: ((p.status === "unsolved") ? red[500] : lightGreen[500]), fontWeight: "bold" }}>{p.status}</TableCell>
+                    <TableCell align='center' sx={{ color: ((p.status === "unsolved") ? red[500] : green[500]), fontWeight: "bold" }}>{p.status}</TableCell>
                     <TableCell align='center'>{p.rating}</TableCell>
                     <TableCell align='center'><Link underline='none' target="_blank" href={"https://codeforces.com/contest/" + p.cid + "/submission/" + p.id}>code</Link></TableCell>
                   </TableRow>

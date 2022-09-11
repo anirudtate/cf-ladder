@@ -1,16 +1,11 @@
-import * as React from 'react';
 import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Link from '../src/Link';
-import ProTip from '../src/ProTip';
-import Copyright from '../src/Copyright';
 
 const About: NextPage = () => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="sm">
       <Box
         sx={{
           my: 4,
@@ -20,16 +15,15 @@ const About: NextPage = () => {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
-          MUI v5 + Next.js with TypeScript example
+        <Typography variant="h4" color="primary" gutterBottom>
+          About
         </Typography>
-        <Box maxWidth="sm">
-          <Button variant="contained" component={Link} noLinkStyle href="/">
-            Go to the home page
-          </Button>
-        </Box>
-        <ProTip />
-        <Copyright />
+        <Typography variant="subtitle1" gutterBottom>
+          LGM = Legendary Grand Master
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          TODO
+        </Typography>
       </Box>
     </Container>
   );

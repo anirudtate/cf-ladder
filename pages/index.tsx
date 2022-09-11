@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { Button, CircularProgress, Pagination, Table, TableBody, TableCell, TableFooter, TableRow, TextField, Typography } from '@mui/material';
+import { Button, CircularProgress, Pagination, Table, TableBody, TableCell, TableRow, TextField, Typography } from '@mui/material';
 import Link from '../src/Link';
 import { useState } from 'react';
 import { green, red } from '@mui/material/colors';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   const [user, setUser] = useState("");
@@ -14,6 +15,9 @@ const Home: NextPage = () => {
   const [page, setPage] = useState(1);
   return (
     <Container maxWidth="sm">
+      <Head>
+        <title>lgm</title>
+      </Head>
       <Box
         sx={{
           m: 4,
@@ -74,10 +78,10 @@ const Home: NextPage = () => {
           <CircularProgress sx={{ my: 5 }} />
           :
           <>
-            {(probs.length == 0)?<></>:<Pagination count={Math.ceil(probs.length / 100)} variant="text" shape="rounded" color='primary' size='small' onChange={(e, v) => { setPage(v) }} />}
+            {(probs.length == 0) ? <></> : <Pagination count={Math.ceil(probs.length / 100)} variant="text" shape="rounded" color='primary' size='small' onChange={(e, v) => { setPage(v) }} />}
             <Table size="small">
               <TableBody>
-                {probs.slice((page-1)*100, (page*100)).map((p: any) =>
+                {probs.slice((page - 1) * 100, (page * 100)).map((p: any) =>
                   <TableRow key={p.id}>
                     <TableCell align='left'><Link underline='hover' target="_blank" href={"https://codeforces.com/contest/" + p.cid + "/problem/" + p.letter}>{p.name}</Link></TableCell>
                     <TableCell align='center' sx={{ color: ((p.status === "unsolved") ? red[500] : green[500]), fontWeight: "bold" }}>{p.status}</TableCell>

@@ -18,7 +18,6 @@ export const codeforcesRouter = router({
         const userProbs: Result[] = userJson.result;
 
         const userSolved = new Map<string, boolean>();
-        if (userProbs == undefined) return undefined;
         userProbs.forEach((userprob: Result) => {
           if (userprob.verdict !== "OK") return;
           userSolved.set(userprob.problem.name, true);
@@ -30,7 +29,6 @@ export const codeforcesRouter = router({
         const probNames: Set<string> = new Set();
         const probsInfo: Array<OutProblem> = [];
 
-        if (expertProbs == undefined) return undefined;
         expertProbs.forEach((expertprob: Result) => {
           if (expertprob.verdict !== "OK") return;
           if (expertprob.problem.rating == undefined) return;
@@ -50,8 +48,8 @@ export const codeforcesRouter = router({
         probsInfo.sort((a, b) => a.rating - b.rating);
         return probsInfo;
       }
-      catch {
-        return undefined;
+      catch (e) {
+        return "wrong";
       }
     }),
 });

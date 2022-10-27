@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import ThemeChange from "../utils/ThemeChange";
 import { trpc } from "../utils/trpc";

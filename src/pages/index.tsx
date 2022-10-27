@@ -47,7 +47,7 @@ const Home: NextPage = () => {
       </Head>
 
       {/* TODO : layout*/}
-      <main className="container flex flex-col items-center w-full min-h-screen md:flex-row">
+      <main className="container flex flex-col items-center w-full min-h-screen md:flex-row md:items-start">
         <div className="flex items-center justify-center md:self-start mx-8 min-w-[60%] md:min-w-[20%]">
           <form className="flex flex-col self-center transition-transform" onSubmit={handleSubmit}>
             <div className="flex flex-row justify-between items-center w-full">

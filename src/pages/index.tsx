@@ -52,7 +52,7 @@ const Home: NextPage = () => {
           <div className="flex flex-row justify-between items-center w-full">
             <div>
               <h1 className="text-primary font-bold">cf-ladder</h1>
-              <span className="label-text">by <a className="link link-primary link-hover" href="https://codeforces.com/profile/anirudtate" target="_blank">anirudtate</a></span>
+              <span className="label-text">by <a className="link link-primary link-hover" href="https://codeforces.com/profile/anirudtate" target="_blank" rel="noopener noreferrer">anirudtate</a></span>
             </div>
             <ThemeChange className="" />
           </div>

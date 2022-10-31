@@ -7,9 +7,9 @@ const ThemeChange: React.FC<{ className: string }> = ({ className }) => {
     themeChange(false);
   }, [])
 
-  const dropdownClasses = ""
+  const dropdownClasses = "dropdown-end"
   const btnClasses = "btn-ghost"
-  const contentClasses = "mt-16"
+  const contentClasses = ""
   return (
     <div title="Change Theme" className={`dropdown ${dropdownClasses} ${className}`}>
       <div tabIndex={0} className={`btn gap-1 normal-case ${btnClasses}`}>
